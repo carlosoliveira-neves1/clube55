@@ -40,7 +40,7 @@
       display: inline-block;
       margin: 0;
       margin-left: 0.5rem;
-      font-size: 1.8rem;
+      font-size: 2.5rem; /* Título maior */
       color: var(--vermelho);
       vertical-align: middle;
     }
@@ -103,23 +103,14 @@
     @media(max-width: 768px) {
       .form-box { border-right: none; border-bottom: 1px solid #eee; }
     }
-  <head>
-  …
-  <style>
-    /* já existente... */
-    header h3 {
-      font-size: 3rem;
-      margin: 0;
-      color: var(--vermelho);
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
+      <img src="logo-cigano.jpg" alt="Casa do Cigano">
       <h1>Casa do Cigano</h1>
     </header>
-    …
 
     <div class="content">
       <div class="form-box">
@@ -180,13 +171,28 @@
   </div>
 
   <script>
-    document.getElementById('formCadastro').addEventListener('submit', async e => {
+    const form = document.getElementById('formCadastro');
+    if (!form) console.error('⚠️ Elemento formCadastro não encontrado!');
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      const data = Object.fromEntries(new FormData(e.target).entries());
-      const res  = await fetch('/api/terreiros/register', {
-        method: 'POST',
-        headers: { 'Content-Type':'application/json' },
-        body: JSON.stringify(data)
-      });
-      const json = await res.json();
-      const resultado =
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        const res = await fetch('/api/terreiros/register', {
+          method: 'POST',
+          headers: { 'Content-Type':'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error(res.statusText || 'Erro na requisição');
+        const json = await res.json();
+        document.getElementById('resultado').textContent =
+          '🎉 Cadastrado! Seu cupom: ' + json.cupom;
+        form.reset();
+      } catch (err) {
+        console.error('Erro no front:', err);
+        document.getElementById('resultado').textContent =
+          '❌ Erro ao cadastrar. Tente novamente.';
+      }
+    });
+  </script>
+</body>
+</html>
