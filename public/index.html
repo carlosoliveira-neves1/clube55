@@ -38,9 +38,8 @@
     header img { max-width: 120px; vertical-align: middle; }
     header h1 {
       display: inline-block;
-      margin: 0;
-      margin-left: 0.5rem;
-      font-size: 2.5rem; /* Título maior */
+      margin: 0 0 0 0.5rem;
+      font-size: 2.5rem;
       color: var(--vermelho);
       vertical-align: middle;
     }
@@ -52,9 +51,7 @@
       padding: 2rem;
       flex: 1 1 300px;
     }
-    .form-box {
-      border-right: 1px solid #eee;
-    }
+    .form-box { border-right: 1px solid #eee; }
     .promo-box img {
       display: block;
       margin: 0 auto 1rem;
@@ -69,11 +66,9 @@
       margin-bottom: 1rem;
       line-height: 1.4;
     }
-    .promo-box ul {
-      padding-left: 1.2rem;
-    }
+    .promo-box ul { padding-left: 1.2rem; }
     form label { display: block; margin-bottom: 1rem; }
-    form input {
+    form input, form select {
       width: 100%;
       padding: 0.5rem;
       margin-top: 0.3rem;
@@ -92,9 +87,7 @@
       cursor: pointer;
       transition: background 0.2s;
     }
-    form button:hover {
-      background: #FFCA28;
-    }
+    form button:hover { background: #FFCA28; }
     #resultado {
       margin-top: 1rem;
       font-weight: bold;
@@ -140,6 +133,18 @@
             Telefone
             <input type="tel" name="telefone" required>
           </label>
+          <label>
+            Selecione a sua Loja
+            <select name="loja" required>
+              <option value="">-- Escolha --</option>
+              <option value="Mega Loja Jabaquara">Mega Loja Jabaquara</option>
+              <option value="Indianopolis">Indianópolis</option>
+              <option value="Mascote">Mascote</option>
+              <option value="Tatuapé">Tatuapé</option>
+              <option value="Osasco">Osasco</option>
+              <option value="Bertioga">Bertioga</option>
+            </select>
+          </label>
           <button type="submit">Quero meu cupom!</button>
         </form>
         <div id="resultado"></div>
@@ -152,7 +157,7 @@
 
         <h3>Como funciona:</h3>
         <ul>
-          <li>☀️ Cadastre seu terreiro pelo WhatsApp abaixo ou em uma de nossas lojas — não precisa ter CNPJ.</li>
+          <li>☀️ Cadastre seu terreiro pelo WhatsApp abaixo ou em nossas lojas — não precisa ter CNPJ.</li>
           <li>☀️ Você receberá um número de associado exclusivo para o seu terreiro.</li>
           <li>☀️ Compartilhe esse código com seus filhos de santo e frequentadores.</li>
           <li>☀️ Ao utilizarem o código nas compras em nossas lojas, todos ganham!</li>
@@ -185,7 +190,7 @@
         if (!res.ok) throw new Error(res.statusText || 'Erro na requisição');
         const json = await res.json();
         document.getElementById('resultado').textContent =
-          '🎉 Cadastrado! Seu cupom: ' + json.cupom;
+          `🎉 Cadastrado na ${json.loja}! Seu cupom: ${json.cupom}`;
         form.reset();
       } catch (err) {
         console.error('Erro no front:', err);

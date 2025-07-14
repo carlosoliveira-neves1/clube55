@@ -16,7 +16,8 @@ export default async function handler(req, res) {
     documento,
     endereco,
     email,
-    telefone
+    telefone,
+    loja
   } = req.body;
 
   const client = new Client({
@@ -30,32 +31,34 @@ export default async function handler(req, res) {
 
   await client.connect();
   try {
-    // 1) Verifica se já existe esse documento
+    // 1) Se já existir este documento, retorna cupom e loja existentes
     const { rows } = await client.query(
-      'SELECT id, cupom FROM terreiros WHERE documento = $1',
+      'SELECT id, cupom, loja FROM terreiros WHERE documento = $1',
       [documento]
     );
     if (rows.length > 0) {
-      // Retorna o cupom existente
       return res.status(200).json({
         id: rows[0].id,
         cupom: rows[0].cupom,
-        message: 'Documento já cadastrado, retornando cupom existente'
+        loja: rows[0].loja,
+        message: 'Documento já cadastrado, retornando dados existentes'
       });
     }
 
-    // 2) Se não existe, gera novo cupom e insere
+    // 2) Caso contrário, gera novo cupom e insere
     const cupom = randomBytes(3).toString('hex').toUpperCase();
     const result = await client.query(
       `INSERT INTO terreiros 
-         (nome_responsavel, nome_terreiro, documento, endereco, email, telefone, cupom) 
-       VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id, cupom`,
-      [nome_responsavel, nome_terreiro, documento, endereco, email, telefone, cupom]
+         (nome_responsavel, nome_terreiro, documento, endereco, email, telefone, cupom, loja) 
+       VALUES($1,$2,$3,$4,$5,$6,$7,$8) 
+       RETURNING id, cupom, loja`,
+      [nome_responsavel, nome_terreiro, documento, endereco, email, telefone, cupom, loja]
     );
 
     return res.status(200).json({
       id: result.rows[0].id,
-      cupom: result.rows[0].cupom
+      cupom: result.rows[0].cupom,
+      loja: result.rows[0].loja
     });
 
   } catch (err) {
