@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Promoção Clube 55 – Cadastro de Terreiros</title>
   <style>
     :root {
@@ -74,6 +75,7 @@
       margin-top: 0.3rem;
       border: 1px solid #ccc;
       border-radius: 4px;
+      font-size: 1rem;
     }
     form button {
       width: 100%;
@@ -92,9 +94,19 @@
       margin-top: 1rem;
       font-weight: bold;
       text-align: center;
+      font-size: 1rem;
     }
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+      .form-box, .promo-box {
+        flex: 1 1 100%;
+        padding: 1rem;
+      }
       .form-box { border-right: none; border-bottom: 1px solid #eee; }
+      header img { max-width: 100px; }
+      header h1 { font-size: 2rem; }
     }
   </style>
 </head>
