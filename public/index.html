@@ -5,108 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Promoção Clube 55 – Cadastro de Terreiros</title>
   <style>
-    :root {
-      --amarelo: #FFD700;
-      --vermelho: #C62828;
-      --fundo: #FFF8E1;
-      --texto: #333;
-    }
+    :root { --amarelo: #FFD700; --vermelho: #C62828; --fundo: #FFF8E1; --texto: #333; }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: var(--fundo);
-      color: var(--texto);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    .container {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      max-width: 1000px;
-      width: 100%;
-    }
-    header {
-      background: var(--amarelo);
-      padding: 1rem;
-      text-align: center;
-    }
-    header img { max-width: 120px; vertical-align: middle; }
-    header h1 {
-      display: inline-block;
-      margin: 0 0 0 0.5rem;
-      font-size: 2.5rem;
-      color: var(--vermelho);
-      vertical-align: middle;
-    }
-    .content {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .form-box, .promo-box {
-      padding: 2rem;
-      flex: 1 1 300px;
-    }
-    .form-box { border-right: 1px solid #eee; }
-    .promo-box img {
-      display: block;
-      margin: 0 auto 1rem;
-      max-width: 150px;
-    }
-    .promo-box h2 {
-      text-align: center;
-      color: var(--vermelho);
-      margin-bottom: 1rem;
-    }
-    .promo-box p, .promo-box ul {
-      margin-bottom: 1rem;
-      line-height: 1.4;
-    }
-    .promo-box ul { padding-left: 1.2rem; }
-    form label { display: block; margin-bottom: 1rem; }
-    form input, form select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.3rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-    form button {
-      width: 100%;
-      padding: 0.6rem;
-      background: var(--amarelo);
-      color: var(--vermelho);
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    form button:hover { background: #FFCA28; }
-    #resultado {
-      margin-top: 1rem;
-      font-weight: bold;
-      text-align: center;
-      font-size: 1rem;
-    }
-    @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-      }
-      .form-box, .promo-box {
-        flex: 1 1 100%;
-        padding: 1rem;
-      }
-      .form-box { border-right: none; border-bottom: 1px solid #eee; }
-      header img { max-width: 100px; }
-      header h1 { font-size: 2rem; }
+    body { margin:0; padding:0; font-family:sans-serif; background:var(--fundo); color:var(--texto);
+      display:flex; align-items:center; justify-content:center; min-height:100vh; }
+    .container { background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);
+      overflow:hidden; max-width:1000px; width:100%; }
+    header { background:var(--amarelo); padding:1rem; text-align:center; }
+    header img { max-width:120px; vertical-align:middle; }
+    header h1 { display:inline-block; margin:0 0 0 0.5rem; font-size:2.5rem;
+      color:var(--vermelho); vertical-align:middle; }
+    .content { display:flex; flex-wrap:wrap; }
+    .form-box, .promo-box { padding:2rem; flex:1 1 300px; }
+    .form-box { border-right:1px solid #eee; }
+    .promo-box img { display:block; margin:0 auto 1rem; max-width:150px; }
+    .promo-box h2 { text-align:center; color:var(--vermelho); margin-bottom:1rem; }
+    .promo-box p, .promo-box ul { margin-bottom:1rem; line-height:1.4; }
+    .promo-box ul { padding-left:1.2rem; }
+    form label { display:block; margin-bottom:1rem; }
+    form input, form select { width:100%; padding:0.5rem; margin-top:0.3rem;
+      border:1px solid #ccc; border-radius:4px; font-size:1rem; }
+    form button { width:100%; padding:0.6rem; background:var(--amarelo);
+      color:var(--vermelho); border:none; border-radius:4px; font-size:1rem;
+      font-weight:bold; cursor:pointer; transition:background 0.2s; }
+    form button:hover { background:#FFCA28; }
+    #resultado { margin-top:1rem; font-weight:bold; text-align:center; font-size:1rem; }
+    @media (max-width:768px) {
+      .content { flex-direction:column; }
+      .form-box, .promo-box { flex:1 1 100%; padding:1rem; }
+      .form-box { border-right:none; border-bottom:1px solid #eee; }
+      header img { max-width:100px; }
+      header h1 { font-size:2rem; }
     }
   </style>
 </head>
@@ -116,37 +45,17 @@
       <img src="logo-cigano.jpg" alt="Casa do Cigano">
       <h1>Casa do Cigano</h1>
     </header>
-
     <div class="content">
       <div class="form-box">
         <h2>Cadastro de Terreiros</h2>
         <form id="formCadastro">
-          <label>
-            Nome do Responsável
-            <input type="text" name="nome_responsavel" required>
-          </label>
-          <label>
-            Nome do Terreiro
-            <input type="text" name="nome_terreiro" required>
-          </label>
-          <label>
-            CPF ou CNPJ
-            <input type="text" name="documento" required>
-          </label>
-          <label>
-            Endereço
-            <input type="text" name="endereco" required>
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" required>
-          </label>
-          <label>
-            Telefone
-            <input type="tel" name="telefone" required>
-          </label>
-          <label>
-            Selecione a sua Loja
+          <label>Nome do Responsável<input type="text" name="nome_responsavel" required></label>
+          <label>Nome do Terreiro<input type="text" name="nome_terreiro" required></label>
+          <label>CPF ou CNPJ<input type="text" name="documento" id="documento" required></label>
+          <label>Endereço<input type="text" name="endereco" required></label>
+          <label>Email<input type="email" name="email" required></label>
+          <label>Telefone<input type="tel" name="telefone" required></label>
+          <label>Selecione a sua Loja
             <select name="loja" required>
               <option value="">-- Escolha --</option>
               <option value="Mega Loja Jabaquara">Mega Loja Jabaquara</option>
@@ -161,12 +70,11 @@
         </form>
         <div id="resultado"></div>
       </div>
-
       <div class="promo-box">
         <img src="logo-cigano.jpg" alt="Casa do Cigano">
         <h2>CLUBE 55 DO CIGANO</h2>
-        <p>Faça parte do nosso clube e aproveite descontos exclusivos e vantagens incríveis. É simples, fácil e cheio de axé! 🌟</p>
-
+        <p>Faça parte do nosso clube e aproveite descontos exclusivos e vantagens incríveis.
+        É simples, fácil e cheio de axé! 🌟</p>
         <h3>Como funciona:</h3>
         <ul>
           <li>☀️ Cadastre seu terreiro pelo WhatsApp abaixo ou em nossas lojas — não precisa ter CNPJ.</li>
@@ -174,40 +82,42 @@
           <li>☀️ Compartilhe esse código com seus filhos de santo e frequentadores.</li>
           <li>☀️ Ao utilizarem o código nas compras em nossas lojas, todos ganham!</li>
         </ul>
-
         <h3>Benefícios:</h3>
         <ul>
           <li>✔️ 5% de desconto para quem usar o código do terreiro.</li>
           <li>✔️ 5% em crédito em mercadorias para o terreiro — ex.: R$10.000 em compras = R$500 em saldo.</li>
-          <li>✔️ Fechamento mensal de benefícios: do dia 01 ao dia 30 de cada mês.</li>
+          <li>✔️ Fechamento mensal de benefícios: dia 01 ao 30.</li>
         </ul>
-
         <p style="text-align:center;font-weight:bold;">Vamos juntos? Entre para o Clube 55 do Cigano! ☀️</p>
       </div>
     </div>
   </div>
-
   <script>
     const form = document.getElementById('formCadastro');
-    if (!form) console.error('⚠️ Elemento formCadastro não encontrado!');
     form.addEventListener('submit', async e => {
       e.preventDefault();
+      const docInput = document.getElementById('documento');
+      const doc = docInput.value.replace(/\D/g, '');
+      if (![11,14].includes(doc.length)) {
+        document.getElementById('resultado').textContent = 
+          '❌ CPF/CNPJ inválido. Verifique os dígitos.';
+        return;
+      }
       const data = Object.fromEntries(new FormData(form).entries());
       try {
         const res = await fetch('/api/terreiros/register', {
-          method: 'POST',
-          headers: { 'Content-Type':'application/json' },
+          method:'POST', headers:{'Content-Type':'application/json'},
           body: JSON.stringify(data)
         });
-        if (!res.ok) throw new Error(res.statusText || 'Erro na requisição');
         const json = await res.json();
         document.getElementById('resultado').textContent =
-          `🎉 Cadastrado na ${json.loja}! Seu cupom: ${json.cupom}`;
-        form.reset();
-      } catch (err) {
-        console.error('Erro no front:', err);
-        document.getElementById('resultado').textContent =
-          '❌ Erro ao cadastrar. Tente novamente.';
+          res.ok
+          ? `🎉 Cadastrado na ${json.loja}! Seu cupom: ${json.cupom}`
+          : `❌ ${json.error || 'Erro ao cadastrar.'}`;
+        if (res.ok) form.reset();
+      } catch(err) {
+        console.error(err);
+        document.getElementById('resultado').textContent = '❌ Erro interno.';
       }
     });
   </script>
